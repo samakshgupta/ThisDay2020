@@ -1,0 +1,65 @@
+<div class="row my-5">
+	<div class="col-md-8 mx-auto my-5">
+		<div class="bgc-white bd bdrs-3 p-20 mb-5">
+
+			<h3 class="c-grey-900 mB-20 mx-auto white">User Details</h3>
+
+            <div class="text-left mt-3 p-1">
+				<label for="exampleInputEmail1" class="bmd-label col-4 mr-4 pl-0 text-right white"><strong> Email </strong> </label> :
+	    		<div class="ml-4 d-inline white"> {{user.email}} </div>
+			</div>
+
+			<div class="text-left mt-3 p-1">
+				<label for="exampleInputEmail1" class="bmd-label col-4 mr-4 pl-0 text-right white"><strong> Age </strong> </label> :
+	    		<div class="ml-4 d-inline white"> {{user.age}} </div>
+			</div>
+
+            <div class="text-left mt-3 p-1">
+				<label for="exampleInputEmail1" class="bmd-label col-4 mr-4 pl-0 text-right white"><strong> City </strong> </label> :
+	    		<div class="ml-4 d-inline white"> {{user.city}} </div>
+			</div>
+
+            <div class="text-left mt-3 p-1">
+				<label for="exampleInputEmail1" class="bmd-label col-4 mr-4 pl-0 text-right white"><strong> Country </strong> </label> :
+	    		<div class="ml-4 d-inline white"> {{user.country}} </div>
+			</div>
+
+            <div class="text-left mt-3 p-1">
+				<label for="exampleInputEmail1" class="bmd-label col-4 mr-4 pl-0 text-right white"><strong> Gender </strong> </label> :
+	    		<div class="ml-4 d-inline white"> {{humanize user.gender}} </div>
+			</div>
+
+			<h5 class="c-grey-900 mB-20 mx-auto white">Your Diary</h5>
+
+<!--
+            {{#each question}}
+                <div class="text-left mt-3 p-1">
+                    <label for="exampleInputEmail1" class="bmd-label col-4 mr-4 pl-0 text-right"><strong> {{humanize question}} </strong> </label> :
+                    <div class="ml-4 d-inline"> {{humanize answer}} </div>
+			    </div>
+
+            {{/each}} -->
+
+
+			<div class="">
+				<div id="dataTable_wrapper" class="dataTable_wrapper">
+					<table id="answersDataTable" class="table-striped border-0" cellspacing="0" width="100%" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+						<tbody>
+							{{#each question}}
+							<tr>
+								<td class = " pl-5 bmd-label white">
+									<strong> {{humanize question}} </strong>
+								</td>
+								<td class = "pl-3 text-center py-3 white"> {{humanize answer}}</td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>

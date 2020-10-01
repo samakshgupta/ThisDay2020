@@ -1,0 +1,75 @@
+<div class = "col-12 p-0 m-0">
+    <div class = "white col-4 mx-auto mt-5 text-center">
+        <h4><strong>Sign Up &amp; Get Started!</strong></h4>
+    </div>
+    <form method="POST" action="/user/create" class = "col-12 m-0 p-0">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 px-0 mx-auto">
+            <div class = "pt-3">
+
+                <div class="col-12 center-align">
+                    <div class="form-group bmd-form-group mt-3 pt-5">
+                    <label for="name" class="bmd-label-floating white">Email </label>
+                    <input type="email" class="form-control border-white white" id="email" name="email" autocomplete="off" required style="cursor: auto;">
+                    </div>
+                </div>
+
+                <div class="col-12 center-align">
+                    <div class="form-group bmd-form-group mt-3 pt-5">
+                    <label for="name" class="bmd-label-floating white">City </label>
+                    <input type="text" class="form-control border-white white" id="city" name="city" autocomplete="off" required style="cursor: auto;" required pattern="\S+.*">
+                    </div>
+                </div>
+
+                <div class="col-12 center-align">
+                    <div class="form-group bmd-form-group mt-3 pt-5">
+                    <label for="name" class="bmd-label-floating white">Country </label>
+                    <input type="text" class="form-control border-white white" id="country" name="country" autocomplete="off" required style="cursor: auto;" required pattern="\S+.*">
+                    </div>
+                </div>
+
+                <div class="col-12 center-align">
+                    <div class="form-group bmd-form-group mt-3 pt-5">
+                    <label for="name" class="bmd-label select-label border-fix white">Gender </label>
+                    <select class="custom-select d-block w-100 border-white white" name="gender" id="gender" required>
+		                	<option value="Choose"></option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+		            </select>
+
+                    </div>
+                </div>
+
+                <div class="col-12 center-align">
+                    <div class="form-group bmd-form-group mt-3 pt-5">
+                    <label for="name" class="bmd-label-floating white">Age </label>
+                    <input type="number" class="form-control border-white white" id="age" name="age" autocomplete="off" required style="cursor: auto;" required pattern="\S+.*">
+                    </div>
+                </div>
+
+                <input type="hidden" name="token" id="token" value = {{token}}>
+
+                <div class="col-12 center-align">
+                    <div class="form-group bmd-form-group mt-3 pt-5">
+                    <label for="name" class="bmd-label select-label border-fix white">When would you like to receive your time capsule? </label>
+                    <select class="custom-select d-block w-100 border-white white" name="time" id="time" required>
+		                	<option value="Choose"></option>
+                            <option value="6 Months">6 Months</option>
+                            <option value="1 Year">1 Year</option>
+                            <option value="1.5 Years">1.5 Years</option>
+                            <option value="2 Years">2 Years</option>
+		            </select>
+
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+            <br/>
+
+            <button type="submit" id='submit-btn' class="btn primary-submit-btn d-block mx-auto mt-3 mb-5">Submit</button>
+        </div>
+    </form>
+
+</div>
+

@@ -1,0 +1,12 @@
+						<div class="flex-box company-info">
+						{{#eachInMap mapInfo}}
+							{{#if value}}
+								{{#unlessArray value}}
+									<span class="col-sm-2"><b> {{ key }}  </b>: 
+										{{ value }}
+									</span>
+								{{/unlessArray}}
+									
+							{{/if}}
+						{{/eachInMap}}
+						</div>

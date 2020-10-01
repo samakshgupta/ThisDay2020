@@ -1,0 +1,11 @@
+<div class="col-md-5 mx-auto mt-2 text-center flash-message">
+	<div class="alert alert-primary {{#unless messages.info}}d-none{{/unless}}" role="alert">{{messages.info}}
+	</div>
+	<div class="alert alert-secondary {{#unless messages.secondary}}d-none{{/unless}}" role="alert">{{messages.secondary}}</div>
+	<div class="alert alert-success {{#unless messages.success}}d-none{{/unless}}" role="alert">{{messages.success}}</div>
+	<div class="alert alert-danger {{#unless messages.error}}d-none{{/unless}}" role="alert">{{messages.error}}</div>
+	<div class="alert alert-warning {{#unless messages.warning}}d-none{{/unless}}" role="alert">{{messages.warning}}</div>
+	<div class="alert alert-info d-none" role="alert">This is a info alert—check it out!</div>
+	<div class="alert alert-light d-none" role="alert">This is a light alert—check it out!</div>
+	<div class="alert alert-dark d-none" role="alert">This is a dark alert—check it out!</div>
+</div>

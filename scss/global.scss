@@ -1,0 +1,220 @@
+body {
+	margin: 0;
+    font-family: Montserrat,Roboto,Helvetica,Arial,sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+
+    @include media-breakpoint-down(sm){
+        font-size : 0.85rem;
+    }
+}
+
+a {
+	color: #4a4a4a;
+}
+a.active {
+	color: #233141;
+}
+
+a:hover {
+	color: #6c757d;
+}
+
+.navbar {
+	padding: 0px;
+}
+
+a.p-2 {
+	padding: 1em !important;
+}
+
+.copyrightTxt {
+    text-align: center;
+    color: #9fa3a8;
+    line-height: 24px;
+    padding-top: 20px;
+    margin-left: 10px;
+    font-size: 13px;
+}
+
+homeBtn a.btnOne:hover,
+.ctaBtn .btnOne.Btn:hover,
+.v2 .domainBtn:hover,
+.domainCta .Btn.ctaBtn:hover,
+.couponForm > button:hover {
+	background: #365272;
+}
+
+.homeBtn a.btnTwo:hover,
+.ctaBtn .btnTwo.Btn:hover {
+	color: #233141;
+}
+
+.logo-custom {
+	width:65%;
+}
+
+table.dataTable tbody tr {
+    background-color: none !important;
+}
+
+.dt-buttons {
+    text-align: right !important;
+}
+
+.footerInfo {
+  padding-bottom: 20px;
+}
+.contact-form {
+  padding-bottom : 20px;
+}
+
+.font-small {
+    font-size: 10px !important;
+}
+
+.marginleft {
+    margin-left: 2.1rem !important;
+}
+
+.is-focused > input{
+    color: white !important;
+}
+
+.white {
+    color: white !important;
+}
+
+.background-blue {
+    background-color: #0e3c87c2 !important;
+}
+
+.border-white {
+    border-bottom: 1px solid white !important;
+}
+
+.background-flow-img {
+    background-image: url('/img/harbour.gif') !important;
+    height: 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.homeContent {
+    color: #fff;
+    padding: 140px 0;
+}
+
+.homeContent span.topTxt {
+    font-size: 16px;
+    padding: 25px;
+}
+
+.homeContent span.h2 {
+    font-size: 29px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 25px;
+    line-height: 46px;
+    color: #fff;
+    display: block;
+}
+
+.homeContent p {
+    font-size: 18px;
+    line-height: 30px;
+    padding : 0px 0px 0px 25px;
+    font-weight:100;
+}
+
+.homeBtn {
+    margin-top: 45px;
+    padding-left: 25px;
+}
+
+.Btn i {
+    margin-right: 15px;
+}
+
+.homeBtn a.btnOne {
+    background: #233141;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.Btn {
+    line-height: 50px;
+    display: inline-block;
+    font-size: 13px;
+    font-family: 'proxima_nova_rgbold';
+    text-transform: uppercase;
+    padding: 0 25px;
+    color: #fff;
+    border-radius: 4px;
+    min-width: 180px;
+    text-align: center;
+    text-decoration: none;
+}
+
+a.btnOne:hover{
+	background: #365272;
+}
+
+/* Container needed to position the button. Adjust the width as needed */
+.container {
+    position: relative;
+    width: 100%;
+  }
+
+  /* Make the image responsive */
+  .container img {
+    width: 100%;
+    height: auto;
+  }
+
+  .primary-submit-btn {
+    background-color: none;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: #fff;
+    cursor: pointer;
+    border-radius: 41px;
+    box-shadow: 0 1px 10px 0 #fff;
+  }
+
+  .border-fix {
+      border-top: 0 !important;
+      border-right: 0 !important;
+      border-left:0 !important;
+  }
+
+  /* Style the button and place it in the middle of the container/image */
+  .container .btn {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: none;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: #fff;
+    cursor: pointer;
+    border-radius: 41px;
+    box-shadow: 0 1px 10px 0 #fff;
+  }
+
+
+  .container .btn:hover {
+    background-color: black;
+  }
+
+
+

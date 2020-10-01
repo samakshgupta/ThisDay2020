@@ -1,0 +1,39 @@
+<div class = "col-12 p-0 m-0">
+    <form method="POST" action="/user/answer" class = "col-12 m-0 p-0 mb-5">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 px-0 mx-auto mb-5">
+            <div class = "my-5 pt-5">
+
+                <div class="col-12 center-align my-5">
+                    <div class="primary-submit-btn text-center">
+                    <label for="name" class=""> {{question}} </label>
+                    </div>
+                </div>
+
+                <div class="col-12 center-align mb-5">
+                    <div class="primary-submit-btn mt-3 pt-5 mx-auto">
+                    <label for="name" class="text-center col-12"> You can answer it here </label>
+                    <input type="text" class="form-control border-white white" id="answer" name="answer" autocomplete="off" required style="cursor: auto;" required pattern="\S+.*">
+                    </div>
+                </div>
+
+                <input type="hidden" name="question" id="question" value='{{question}}'>
+                <input type="hidden" name="user_id" id="user_id" value='{{user_id}}'>
+
+            </div>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+
+            <button type="submit" id='submit-btn' class="btn primary-submit-btn d-block mx-auto mt-3 mb-5">Submit</button>
+        </div>
+    </form>
+
+</div>
+

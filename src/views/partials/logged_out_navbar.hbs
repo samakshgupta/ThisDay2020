@@ -1,0 +1,38 @@
+        
+            <header class="bg-white public">
+                <div class="pt-3 pb-2 mx-auto col-xs-12 col-sm-12 col-md-10 col-lg-10 d-flex align-items-center justify-content-between">
+                <a href="/" class="col-sm-12 col-md-4 col-lg-3 col-xl-3 px-0">
+                    <img src="/img/logo_black.png" class="col-md-12 col-xl-12" />
+                </a>
+                <ul class="nav d-flex justify-content-center align-items-center nav-desktop">
+                    {{#unless signup}}
+                        {{#if loggedIn}}
+                            <li class="nav-item mx-3 h6 mt-2"> <a class="header-link nounderline" href="/dashboard"> Dashboard  </a></li>
+                        {{/if}}
+                        {{#unless loggedIn}}
+                            <li class="nav-item mx-4 h6 mt-2"> <a href="/" class="header-link nounderline"> Home </a></li>
+                        {{/unless}}
+                        <li class="nav-item mx-3 h6 mt-2"> <a href="/products" class="header-link nounderline"> Products </a>  </li>
+                        <li class="nav-item mx-3 h6 mt-2"> <div class="dropdown"> <button class="dropbtn">Risk</button> <div class="dropdown-content"> <a href="/risk">Understanding Risk</a><a href="/manage-risk">Managing Risk</a></div></div></li>
+                        <li class="nav-item mx-3 h6 mt-2"> <div class="dropdown"> <button class="dropbtn">About</button> <div class="dropdown-content"> <a href="/about-us" class = "text-black">Seawise Invest</a><a href="/statistics" class = "text-black">Trade Finance</a></div></div></li>
+                        {{#if loggedIn}}
+                          {{#if application}}
+                            <li class="nav-item mx-3 h6 mt-2"> <a class="header-link nounderline" href='/dashboard'> Dashboard  </a></li>
+                          {{/if}}
+                        {{/if}}
+                    {{/unless}}
+                    <li class="nav-item mx-4" > <a class="h6 login-buttonp2p px-4 py-2"
+                        {{#if loggedIn }} href="/user/logout" {{/if}} 
+                        {{#unless loggedIn }} href="/user/login" {{/unless}}> 
+                            {{#if loggedIn }} LOG OUT {{/if}} 
+                            {{#unless loggedIn }} LOG IN {{/unless}} </a></li>
+
+                    {{#unless signup}}
+                        {{#unless loggedIn }}
+                                    <li class="nav-item mx-3 "> <a class="btn btn-primary get-started exp px-4 py-2 mt-1" href='/user/new'> SIGN UP </a></li>
+                        {{/unless}}
+                    {{/unless}}
+
+                </ul>
+                </div>
+            </header>

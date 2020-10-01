@@ -1,0 +1,40 @@
+ <header class="flex-column flex-md-row fixed-top border-bottom">
+        <div class="">
+           <div class="col-12 mx-auto bg-white px-0 py-3  d-flex align-items-start justify-content-between">
+                <a href="/" class="col-sm-12 col-md-4 col-lg-4 col-xl-2">
+                  <img src="/img/logo_black.png" class="logo-mobile d-block col-xl-12 col-lg-12" />
+                </a>
+                
+                <ul class="nav d-flex justify-content-center align-items-center nav-desktop">
+                  {{#unless loggedIn}}
+                    <li class="nav-item mx-4 h6 mt-2"> <a href="/" class="nounderline"> HOME </a></li>
+                    <li class="nav-item mx-4 h6 mt-2"> <a href="#product" class="header-link nounderline"> PRODUCT </a>  </li>
+                    {{#if loggedIn}}
+                        <li class="nav-item mx-4 h6 mt-2"> <a class="header-link nounderline" href="/application/edit/{{application.id}}"> APPLICATION  </a></li>
+                    {{/if}}
+                    <li class="nav-item mx-4" > 
+                         <a class="btn btn-primary h6 login-button px-4 py-1" 
+                           {{#if loggedIn }} href="/user/logout" {{/if}} 
+                           {{#unless loggedIn }} href="/user/login" {{/unless}}> 
+                           {{#if loggedIn }} LOG OUT {{/if}} 
+                            {{#unless loggedIn }} LOG IN {{/unless}}
+                         </a>
+                    </li>
+                    
+                    <li class="nav-item mx-4 "> <a class="btn btn-primary get-started px-4 py-2" href='/user/new'> SIGN UP  </a></li>
+                    {{/unless}}
+                    {{#if loggedIn}}
+                    <li class="nav-item mx-4">
+                        <button class="btn h6 navbar-button dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          {{firstName}} {{lastName}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item py-0" href="/user/logout">Log out</a>
+                        </div>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+</header>
+   

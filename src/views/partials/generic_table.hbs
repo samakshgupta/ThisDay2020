@@ -1,0 +1,19 @@
+		{{#if array.[0]}}
+		<h5> {{title}} </h5>
+		<div class="flex-box probe_company_info">
+			<table class="table">
+				<tr>
+					{{#eachInMap array.[0]}}
+						<th scope="col"> {{humanize key}} </th>
+					{{/eachInMap}}
+				</tr>
+				{{#each array}}
+				<tr>
+					{{#eachInMap this}}
+						<td>{{value}}</td>
+					{{/eachInMap}}
+				</tr>
+				{{/each}}
+			</table>
+		</div>
+		{{/if}}

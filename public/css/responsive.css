@@ -1,0 +1,6 @@
+@media only screen and (min-width: 300px) and (max-width: 1200px) {
+.navbar-brand {
+   flex: 0 0 85.66667% !important;
+    max-width: 85.66667% !important;
+ }
+}
