@@ -62,7 +62,7 @@ exports.questionOfTheDay = async ( req, res ) => {
 		let already_answered = await Answer.findOne({ question: question.question, user: user.id });
 		if(already_answered || question_no>71){
 			req.flash('error', 'You have already answered!');
-			res.redirect('/home');
+			res.redirect('/');
 		}
 		return viewHelper.renderViewWithParams({question: question.question, user_id: user.id}, res, {view : 'question_page',  request : req});
 	}
@@ -74,8 +74,8 @@ exports.answerOfTheDay = async ( req, res ) => {
 	let user = req.body.user_id;
 	let data = new Answer({question, answer, user});
 	await data.save();
-	req.flash('success', 'Thank you for answering! Your next question will come up in 3 days');
-	res.redirect('/home');
+	req.flash('success', 'Thank you for answering! Your next question will come up in 2 days');
+	res.redirect('/');
 }
 
 exports.addQuestionsInDb = async (req, res) => {
