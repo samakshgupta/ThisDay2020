@@ -45,6 +45,16 @@ app.use(session({
 
 app.use(flash());
 
+
+app.use (function (req, res, next) {
+  var schema = (req.headers['x-forwarded-proto'] || '').toLowerCase();
+  if (schema === 'https') {
+    next();
+  } else {
+    res.redirect('https://' + req.headers.host + req.url);
+  }
+});
+
 app.use('/', routes);
 app.use(errorController.notFound);
 
@@ -73,9 +83,9 @@ cron.schedule('* 12 * * *', async () => {
               'api-key': MAIL_API_KEY
             },
             body: {
-              sender: {name: 'Covid Diaries', email: 'samaksh.gupta@live.com'},
+              sender: {name: 'This Day 2020', email: 'thisdaytwenty20@gmail.com'},
               to: [{email: user.email}],
-              replyTo: {email: 'samaksh.gupta@live.com'},
+              replyTo: {email: 'thisdaytwenty20@gmail.com'},
               templateId: 1
             },
             json: true

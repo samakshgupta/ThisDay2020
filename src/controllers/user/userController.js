@@ -16,6 +16,7 @@ exports.create = async (req, res) => {
 	let time = req.body.time;
 
 	let cron_date = new Date();
+	cron_date.setDate(cron_date.getDate() + 2);
 	cron_date.setHours(5,30,0,0);
 
 	let token = uuidv4();
@@ -23,7 +24,7 @@ exports.create = async (req, res) => {
 	let user = new User({email, city, country, age, gender, token, cron_date, time});
 	await user.save();
 
-	req.flash('success', 'Welcome to Covid Diaries! Thank you for signing up.');
+	req.flash('success', 'Welcome to This Day 2020! Thank you for signing up.');
 	res.redirect('/'+token);
 };
 
@@ -36,7 +37,7 @@ exports.checkEmail = async (req,res) => {
 	let user = await User.findOne({email});
 	if(!user){
 		req.flash('error', 'Invalid Email. Please sign up!');
-		res.redirect('/');
+		res.redirect('/home');
 	}
 	let token = user.token;
 	return viewHelper.renderViewWithParams({token}, res, {view : 'home',  request : req});
@@ -44,6 +45,9 @@ exports.checkEmail = async (req,res) => {
 
 exports.questionOfTheDay = async ( req, res ) => {
 	let token = req.body.token;
+	let half = false;
+	let last_ten = false;
+	let last = false;
 	if(!token){
 		req.flash('error', 'Unauthorized User');
 		res.redirect('/user/email');
@@ -64,7 +68,16 @@ exports.questionOfTheDay = async ( req, res ) => {
 			req.flash('error', 'You have already answered!');
 			res.redirect('/');
 		}
-		return viewHelper.renderViewWithParams({question: question.question, user_id: user.id}, res, {view : 'question_page',  request : req});
+		if(question_no == 30){
+			half = true;
+		}
+		if(question_no == 50){
+			last_ten = true;
+		}
+		if(question_no == 60){
+			last = true;
+		}
+		return viewHelper.renderViewWithParams({question: question.question, user_id: user.id, half, last_ten, last}, res, {view : 'question_page',  request : req});
 	}
 }
 
@@ -81,79 +94,68 @@ exports.answerOfTheDay = async ( req, res ) => {
 exports.addQuestionsInDb = async (req, res) => {
 	let got_ques = await Question.find({});
 	let questions = [
-		'What was the first thought you had this morning?',
-		'What is the first thing you want to do when this is all over?',
-		'What was a new thing you learnt about yourself during this time?',
-		'What was the last book you read?',
-		'What was the last thing you bought?',
-		'Share a picture of your shoes',
-		'What was the last meal you cooked yourself?',
-		'Share a new recipe you just learnt',
-		'When was the last time you went out? Describe that experience',
-		'Spend an hour doing something that brings you immense happiness today',
-		'What new hobby have you picked up?',
-		'If you could carry one thing with you when this is all over, what would it be?',
-		'What is your biggest fear?',
-		'What do you wish you did, but never did?',
-		'Write a letter to someone you lost touch with',
-		'What’s your least favourite colour and why?',
-		'Share a picture of your last meal',
-		'Where were you on the 1st of January, 2020? What were you doing?',
-		'What was the last song you listened to?',
-		'Describe your happy place',
-		'If COVID19 was a type of food, what would it be and why?',
-		'What’s your favourite time of year?',
-		'Share whatever you want to',
-		'Reach out to someone you haven’t heard from in a while, and describe what that felt like',
-		'What’s one thing you’d want to remember from today?',
-		'Who’s the last person you called?',
-		'What’s the last text message you received?',
-		'What is one thing you think you’ll never do again, once this is all over?',
-		'What’s your favourite word?',
-		'What’s one thing you wish everyone knew about you?',
-		'Who’s your favourite person?',
-		'If your life was a book, what would the title be?',
-		'Describe one item of clothing you are currently wearing in detail',
-		'What did you have for breakfast?',
-		'When was the last time you were in love?',
-		'Describe the time you helped someone in the last month',
-		'What did you learn about the world today, that you didnt know yesterday?',
-		'What was the last movie you watched?',
-		'Share a picture from your day',
-		'What was the last thing that made you laugh?',
-		'Write a short letter to your future self',
-		'What were you doing last wednesday?',
-		'If not for the pandemic, where would you have been right now?',
-		'Share a picture of your sky',
-		'What were you doing 2 hours ago?',
-		'Describe your day in emojis',
-		'What is your favourite article of clothing, and why?',
-		'What’s a bad habit you have, you wish you could get rid of?',
-		'When was the last time you told someone you love them?',
-		'Share a story of hope during this time',
-		'What’s your favourite spot in your house?',
-		'How did you spend the last weekend?',
-		'What is the one thing you find yourself doing everyday?',
-		'Share the recipe of the last thing you cooked',
-		'Who were the last five people you spoke to?',
-		'When was the last time you cleaned your closet?',
-		'Share what made you feel grateful today',
-		'What was the last thing that frightened you?',
-		'What’s the last thing you do before going to bed?',
-		'Who was the last person you saw?',
-		'What are you wearing?',
-		'Share an image of where you sleep',
-		'Who’s a new artist you discovered during COVID-19?',
-		'What was the last thing you took out of the refrigerator?',
-		'When was the last time you met your friends? Describe what you did',
-		'Who do you wish you were quarantining with?',
-		'Share a picture of yourself',
-		'How would you like to remember this time?',
-		'What’s something new that you’ve added to your routine?',
-		'Upload your favourite picture of a loved one taken recently and share why you love it',
-		'Who’s the newest person that’s come into your life? Describe your relationship with them',
+			'If not for this pandemic, where would you have been right now and what would you be doing?',
+			'What was the first thought you had this morning?',
+			'If you had to make a movie about your quarantine experience, what would its name be?',
+			'How has this time changed your relationship with your family, if at all?',
+			'Has this experience made you more or less materialistic? Why do you think that is?',
+			'Describe the last dream you remember',
+			'What’s the one thing you find yourself doing everyday, that you didn’t do pre-covid?',
+			'Who’s the newest person that’s come into your life? Describe your relationship with them',
+			'What’s one thing you wish everyone knew about you?',
+			'Who do you wish you were quarantining with and why?',
+			'What’s a bad habit you’ve picked up during this time?',
+			'What’s one new thing you’ve learnt about yourself during this time?',
+			'How are you caring for yourself doing this time? What does your self-care routine look like?',
+			'Who’s the one person who’s made this time easier to deal with? Describe how they’ve helped you during this time',
+			'When was the last time you met your friends? What was that like?',
+			'What did you learn about the world today, that you didn’t know yesterday?',
+			'What would you say to your future self? (try writing a short letter!)',
+			'What was the last thing that made you laugh?',
+			'What’s your work-from-home routine? Describe it in as much detail as you’d like',
+			'Do you reminisce about a particular holiday you took pre-covid? Share your best memory from that trip',
+			'What’s been the hardest thing you’ve had to deal with during covid?',
+			'Have you been recycling outfits during covid? Describe the item of clothing you’ve worn the most',
+			'When was the last time you were in love?',
+			'Describe the time you helped someone over the last 6 months',
+			'Has time passed more quickly or slowly during your covid experience? Why do you think that is?',
+			'What’s one thing you miss doing the most?',
+			'Describe the last meaningful conversation you had with someone',
+			'What’s something new that you’ve added to your daily routine?',
+			'Share what you are feeling grateful for today',
+			'What is the first thing you want to do when this is all over?',
+			'What’s the last text message you sent?',
+			'What are you wishing for today?',
+			'If COVID19 was a type of food, what would it be and why?',
+			'What’s your favourite spot in your house? Why is it your favourite?',
+			'Share a quote or some advice that has given you strength during this time',
+			'What news sources/types of stories have you followed during covid? Have your reading habits changed?',
+			'What would you say to someone you wish you were still in touch with? (try writing a short letter!)',
+			'What is one thing you think you’ll never do again, once this is all over?',
+			'Share the recipe of the last thing you cooked',
+			'Who was the last person you met? Describe that experience',
+			'Share a story of hope during this time',
+			'Describe your relationship with someone in your community (think outside your immediate circle)',
+			'Describe the best tv show/movie you’ve watched during covid',
+			'Describe your happy place, and who’s there with you',
+			'How did you spend the last weekend?',
+			'If you could change something from the last 5 months, what would you change and why?',
+			'Moving forward, what 3 things do you want to remember from this time?',
+			'What new hobby or skill have you picked up?',
+			'Describe your day in 3 words',
+			'Where were you on the 1st of January, 2020? What were the resolutions you made for this year?',
+			'Where do you see yourself a year from today?',
+			'What was the last thing you bought?',
+			'If you could change places with anyone around the world right now, who would you choose and why?',
+			'What’s one thing you’d want to remember from today?',
+			'Who’s the last person you called? What did you talk about?',
+			'What’re the 3 things you’d like to do as soon as things return to some sort of normalcy?',
+			'When was the last time you went out? Describe that experience',
+			'If you could carry one thing with you when this is all over, what would it be?',
+			'What has this pandemic taught you about your country?',
+			'How would you like to remember this time?'
 		]
-	if(got_ques.length !== 71){
+	if(got_ques.length !== 60){
 		let day = 0;
 		questions.forEach(async q => {
 			day = day+1;

@@ -13,10 +13,18 @@ router.get('/aboutus', async function(req, res) {
     return viewHelper.renderViewWithParams({aboutus: true}, res, {view : "aboutus"});
 });
 
+router.get('/faqs', async function(req, res) {
+    return viewHelper.renderViewWithParams({faqs: true}, res, {view : "faqs"});
+});
+
 router.get('/', async function(req, res){
 	let view = 'home';
 	return viewHelper.renderViewWithParams({homePage : true, isPublic : true}, res, {view : view,  request : req})
 });
+
+/*router.get('/', async function(req, res){
+	return viewHelper.renderViewWithParams({homePage : true, isPublic : true}, res, {view : 'coming_soon',  request : req})
+});*/
 
 router.get('/:token', async function(req, res){
 	let token = req.params.token;

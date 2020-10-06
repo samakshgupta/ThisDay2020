@@ -1,6 +1,11 @@
 <div class = "col-12 p-0 m-0">
     <div class = "col-12 d-flex flex-wrap justify-content-between">
+        {{#if token}}
         <a href = "/home" class="col-1 my-4 white ml-3">Sign Up</a>
+        {{/if}}
+        {{#unless token}}
+        <p class="col-1 my-4 white ml-3">Signed In</p>
+        {{/unless}}
         <a href = "/aboutus" class="col-2 my-4 white text-right mr-3">About the Project</a>
     </div>
     <form method="POST" action="/user/questionOfTheDay" class = "col-12 m-0 p-0">
@@ -24,7 +29,7 @@
 
     <div class = "col-12 d-flex flex-wrap justify-content-between pb-3">
         <a href = "https://www.instagram.com/thisday_2020/" target="_blank " class="col-1 my-4 white ml-3">Instagram</a>
-        <a href = "/t&c" class="col-1 my-4 white mr-3">Ts &amp; Cs</a>
+        <a href = "/faqs" class="col-1 my-4 white">FAQs</a>
     </div>
 
 </div>
