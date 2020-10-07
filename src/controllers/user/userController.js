@@ -79,12 +79,12 @@ exports.questionOfTheDay = async ( req, res ) => {
 	let half = false;
 	let last_ten = false;
 	let last = false;
-	if(!token){
+	let user = await User.findOne({token});
+	if(!token || !user){
 		req.flash('error', 'Unauthorized User');
 		res.redirect('/user/email');
 	} else {
 		let question_no;
-		let user = await User.findOne({token});
 		let today = moment(new Date());
 		let user_createdat = moment(user.createdAt);
 		let diff = today.diff(user_createdat, 'days');
