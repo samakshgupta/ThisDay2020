@@ -23,6 +23,12 @@ exports.create = async (req, res) => {
 
 	let token = uuidv4();
 
+	let existing_user = await User.findOne({email});
+	if(existing_user){
+		req.flash('error', 'Email already exists. Cannot sign up with same email again!');
+		res.redirect('/');
+	}
+
 	let user = new User({email, city, country, age, gender, token, cron_date, time});
 	await user.save();
 

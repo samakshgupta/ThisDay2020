@@ -20,7 +20,7 @@ router.get('/aboutus', async function(req, res) {
 });
 
 router.get('/faqs', async function(req, res) {
-    return viewHelper.renderViewWithParams({faqs: true}, res, {view : "faqs"});
+    return viewHelper.renderViewWithParams({aboutus: true}, res, {view : "faqs"});
 });
 
 router.get('/', async function(req, res){

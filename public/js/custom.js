@@ -107,4 +107,6 @@ if ($(this).scrollTop() > 1){
 		$('#admin_token').val(ls_token);
 	}
 
+	$('#gender1').css('background-color', 'white');
+
 });

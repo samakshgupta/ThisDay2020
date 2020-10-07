@@ -45,7 +45,7 @@ app.use(session({
 
 app.use(flash());
 
-/*
+
 app.use (function (req, res, next) {
   var schema = (req.headers['x-forwarded-proto'] || '').toLowerCase();
   if (schema === 'https') {
@@ -53,7 +53,7 @@ app.use (function (req, res, next) {
   } else {
     res.redirect('https://' + req.headers.host + req.url);
   }
-});*/
+});
 
 app.use('/', routes);
 app.use(errorController.notFound);
