@@ -64,8 +64,12 @@ exports.questionOfTheDay = async ( req, res ) => {
 		}
 		let question = await Question.findOne({day: question_no});
 		let already_answered = await Answer.findOne({ question: question.question, user: user.id });
-		if(already_answered || question_no>71){
+		if(already_answered){
 			req.flash('error', 'You have already answered!');
+			res.redirect('/');
+		}
+		if(question_no>60){
+			req.flash('error', 'You have answered all the questions!');
 			res.redirect('/');
 		}
 		if(question_no == 30){

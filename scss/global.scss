@@ -165,6 +165,35 @@ table.dataTable tbody tr {
     text-decoration: none;
 }
 
+.signup-btn {
+    text-transform: none !important;
+    font-size: 16px !important; 
+    font-weight: 400 !important; 
+}
+
+.signup-btn:hover {
+    text-decoration: underline !important; 
+}
+
+.font-24 {
+    font-size: 24px !important; 
+}
+
+option {
+    background-color: black !important; 
+}
+
+.textarea {
+    background-color: transparent !important; 
+    border: none !important; 
+    border-radius: 41px;
+    box-shadow: 0 1px 10px 0 #fff;
+}
+
+.custom-select:focus > option {
+    background-color: white !important; 
+}
+
 a.btnOne:hover{
 	background: #365272;
 }

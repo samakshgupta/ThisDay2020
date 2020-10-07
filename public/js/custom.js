@@ -102,6 +102,7 @@ if ($(this).scrollTop() > 1){
 
 	let ls_token = localStorage.getItem('token');
 	if(ls_token){
+		$('#sign_token').val(ls_token);
 		$('#token').val(ls_token);
 		$('#admin_token').val(ls_token);
 	}

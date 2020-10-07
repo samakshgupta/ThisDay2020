@@ -1,11 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const User = mongoose.model('User');
 const viewHelper = require('../views/view_handler');
 const user = require('../controllers/user');
 const dashboard = require('../controllers/dashboard');
 
-router.get('/home', async function(req, res){
+router.post('/home', async function(req, res){
+	let token = await User.findOne({token: req.body.token});
+	if(token){
+		req.flash('error','You are already signed in!');
+		res.redirect('/');
+	}
 	return viewHelper.renderViewWithParams({}, res, {view : 'new_home',  request : req})
 });
 
