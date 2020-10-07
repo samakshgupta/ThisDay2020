@@ -6,6 +6,8 @@ const Question = mongoose.model('Question');
 const Answer = mongoose.model('Answer');
 const { v4: uuidv4 } = require('uuid');
 var moment = require('moment');
+const request = require('request');
+const MAIL_API_KEY = process.env['MAIL_API_KEY'];
 
 exports.create = async (req, res) => {
 	let email = req.body.email;
