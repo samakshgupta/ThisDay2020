@@ -24,6 +24,29 @@ exports.create = async (req, res) => {
 	let user = new User({email, city, country, age, gender, token, cron_date, time});
 	await user.save();
 
+	const options = {
+		method: 'POST',
+		url: 'https://api.sendinblue.com/v3/smtp/email',
+		headers: {
+			accept: 'application/json',
+			'content-type': 'application/json',
+			'api-key': MAIL_API_KEY
+		},
+		body: {
+			sender: {name: 'This Day 2020', email: 'thisdaytwenty20@gmail.com'},
+			to: [{email: email}],
+			replyTo: {email: 'thisdaytwenty20@gmail.com'},
+			templateId: 3
+		},
+		json: true
+    };
+
+	request(options, function (error, response, body) {
+		if (error) throw new Error(error);
+
+		console.log(body);
+	});
+
 	req.flash('success', 'Welcome to This Day 2020! Thank you for signing up.');
 	res.redirect('/'+token);
 };
