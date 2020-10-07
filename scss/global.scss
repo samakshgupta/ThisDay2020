@@ -65,6 +65,12 @@ table.dataTable tbody tr {
     text-align: right !important;
 }
 
+.faq {
+    @include media-breakpoint-down(sm){
+        margin-right: 1rem !important;
+    }
+}
+
 .footerInfo {
   padding-bottom: 20px;
 }
@@ -167,27 +173,28 @@ table.dataTable tbody tr {
 
 .signup-btn {
     text-transform: none !important;
-    font-size: 16px !important; 
-    font-weight: 400 !important; 
+    font-size: 16px !important;
+    font-weight: 400 !important;
 }
 
 .signup-btn:hover {
-    text-decoration: underline !important; 
+    text-decoration: underline !important;
 }
 
 .font-24 {
-    font-size: 24px !important; 
+    font-size: 24px !important;
 }
 
 .textarea {
-    background-color: transparent !important; 
-    border: none !important; 
+    background-color: transparent !important;
+    border: none !important;
     border-radius: 41px;
     box-shadow: 0 1px 10px 0 #fff;
+    width: 100% !important; 
 }
 
 .blackbg {
-    color: black !important; 
+    color: black !important;
 }
 
 /* Chrome, Safari, Edge, Opera */
