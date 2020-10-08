@@ -107,7 +107,7 @@ table.dataTable tbody tr {
 }
 
 .background-flow-img {
-    background-image: url('/img/water.gif') !important;
+    background-image: url('/img/water.jpg') !important;
     height: 100% !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -186,7 +186,7 @@ table.dataTable tbody tr {
 }
 
 .answers {
-    position: relative !important; 
+    position: relative !important;
 }
 
 .textarea {
@@ -194,12 +194,12 @@ table.dataTable tbody tr {
     border: none;
     border-radius: 11px;
     box-shadow: 0 1px 10px 0 #fff;
-    width: 100% !important; 
+    width: 100% !important;
     -webkit-appearance: none;
 
      @include media-breakpoint-down(sm){
-        width: 100% !important; 
-        border: 0 1px solid white !important; 
+        width: 100% !important;
+        border: 0 1px solid white !important;
 
     }
 }
