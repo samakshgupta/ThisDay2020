@@ -6,11 +6,11 @@ const viewHelper = require('../views/view_handler');
 const user = require('../controllers/user');
 const dashboard = require('../controllers/dashboard');
 
-router.post('/home', async function(req, res){
+router.all('/home', async function(req, res){
 	let token = await User.findOne({token: req.body.token});
 	if(token){
 		req.flash('error','You are already signed in!');
-		res.redirect('/');
+		return res.redirect('/');
 	}
 	return viewHelper.renderViewWithParams({}, res, {view : 'new_home',  request : req})
 });
@@ -32,13 +32,13 @@ router.get('/', async function(req, res){
 	return viewHelper.renderViewWithParams({homePage : true, isPublic : true}, res, {view : 'coming_soon',  request : req})
 });*/
 
-router.get('/:token', async function(req, res){
+router.get('/token/:token', async function(req, res){
 	let token = req.params.token;
 	if(token.length == 36){
 		return viewHelper.renderViewWithParams({homePage : true, isPublic : true, token: token}, res, {view : 'home',  request : req})
 	} else {
 		req.flash('error', 'Unauthorized user');
-		res.redirect('/user/email');
+		return res.redirect('/user/email');
 	}
 });
 

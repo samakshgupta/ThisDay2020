@@ -185,12 +185,23 @@ table.dataTable tbody tr {
     font-size: 24px !important;
 }
 
+.answers {
+    position: relative !important; 
+}
+
 .textarea {
     background-color: transparent !important;
-    border: none !important;
-    border-radius: 41px;
+    border: none;
+    border-radius: 11px;
     box-shadow: 0 1px 10px 0 #fff;
     width: 100% !important; 
+    -webkit-appearance: none;
+
+     @include media-breakpoint-down(sm){
+        width: 100% !important; 
+        border: 0 1px solid white !important; 
+
+    }
 }
 
 .blackbg {

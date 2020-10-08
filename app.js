@@ -45,7 +45,7 @@ app.use(session({
 
 app.use(flash());
 
-/*
+
 app.use (function (req, res, next) {
   var schema = (req.headers['x-forwarded-proto'] || '').toLowerCase();
   if (schema === 'https') {
@@ -54,7 +54,7 @@ app.use (function (req, res, next) {
     res.redirect('https://' + req.headers.host + req.url);
   }
 });
-*/
+
 
 app.use('/', routes);
 app.use(errorController.notFound);
@@ -65,7 +65,7 @@ if(app.get('dev') === 'development'){
 
 require('./src/lib/initializers');
 
-cron.schedule('0 12 * * *', async () => {
+cron.schedule('0 19 * * *', async () => {
     var date = new Date();
     date.setHours(5,30,0,0);
     let users = await User.find({cron_date: date});

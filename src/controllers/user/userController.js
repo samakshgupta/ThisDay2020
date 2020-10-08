@@ -17,6 +17,11 @@ exports.create = async (req, res) => {
 	let gender = req.body.gender;
 	let time = req.body.time;
 
+	if(time == 'Choose' || gender == 'Choose'){
+		req.flash('error', 'Please fill up all the fields in the sign up form before submitting');
+		return res.redirect('/home');
+	}
+
 	let cron_date = new Date();
 	cron_date.setDate(cron_date.getDate() + 2);
 	cron_date.setHours(5,30,0,0);
@@ -26,7 +31,7 @@ exports.create = async (req, res) => {
 	let existing_user = await User.findOne({email});
 	if(existing_user){
 		req.flash('error', 'Email already exists. Cannot sign up with same email again!');
-		res.redirect('/');
+		return res.redirect('/');
 	}
 
 	let user = new User({email, city, country, age, gender, token, cron_date, time});
@@ -56,7 +61,7 @@ exports.create = async (req, res) => {
 	});
 
 	req.flash('success', 'Welcome to This Day 2020! Thank you for signing up.');
-	res.redirect('/'+token);
+	return res.redirect('/token/'+token);
 };
 
 exports.email = async (req, res) => {
@@ -68,7 +73,7 @@ exports.checkEmail = async (req,res) => {
 	let user = await User.findOne({email});
 	if(!user){
 		req.flash('error', 'Invalid Email. Please sign up!');
-		res.redirect('/home');
+		return res.redirect('/home');
 	}
 	let token = user.token;
 	return viewHelper.renderViewWithParams({token}, res, {view : 'home',  request : req});
@@ -97,11 +102,11 @@ exports.questionOfTheDay = async ( req, res ) => {
 		let already_answered = await Answer.findOne({ question: question.question, user: user.id });
 		if(already_answered){
 			req.flash('error', 'You have already answered!');
-			res.redirect('/');
+			return res.redirect('/');
 		}
 		if(question_no>60){
 			req.flash('error', 'You have answered all the questions!');
-			res.redirect('/');
+			return res.redirect('/');
 		}
 		if(question_no == 30){
 			half = true;
@@ -123,7 +128,7 @@ exports.answerOfTheDay = async ( req, res ) => {
 	let data = new Answer({question, answer, user});
 	await data.save();
 	req.flash('success', 'Thank you for answering! Your next question will come up in 2 days');
-	res.redirect('/');
+	return res.redirect('/');
 }
 
 exports.addQuestionsInDb = async (req, res) => {
@@ -198,5 +203,5 @@ exports.addQuestionsInDb = async (req, res) => {
 			await new_q.save();
 		})
 	}
-	res.redirect('/');
+	return res.redirect('/');
 }
