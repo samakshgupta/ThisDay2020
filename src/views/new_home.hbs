@@ -25,8 +25,13 @@
 
                 <div class="col-md-12 col-lg-12 col-xl-12 col-10 mx-auto center-align">
                     <div class="form-group bmd-form-group mt-3 pt-5">
-                    <label for="name" class="bmd-label-floating white">Country </label>
-                    <input type="text" class="form-control border-white white" id="country" name="country" autocomplete="off" required style="cursor: auto;" required pattern="\S+.*">
+                    <label for="name" class="bmd-label select-label border-fix white" >Country </label>
+                    <select class="custom-select border-white white mt-4 pl-2" name="country" required id="country">
+                        <option value="">Choose</option>
+                        {{#each countries}}
+                            <option value="{{name}}">{{name}}</option>
+                        {{/each}}
+                    </select>
                     </div>
                 </div>
 
@@ -34,10 +39,10 @@
                     <div class="form-group bmd-form-group mt-3 pt-5">
                     <label for="name" class="bmd-label select-label border-fix white">Gender </label>
                     <select class="custom-select border-white white mt-4 pl-2" name="gender" id="gender" required>
-		                	<option class = "blackbg" value="Choose"></option>
-                            <option class = "blackbg" value="male">Male</option>
-                            <option class = "blackbg" value="female">Female</option>
-                            <option class = "blackbg" value="other">Other</option>
+                        <option class = "blackbg" value="Choose"></option>
+                        <option class = "blackbg" value="male">Male</option>
+                        <option class = "blackbg" value="female">Female</option>
+                        <option class = "blackbg" value="other">Other</option>
 		            </select>
 
                     </div>

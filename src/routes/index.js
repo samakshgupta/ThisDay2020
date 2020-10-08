@@ -5,6 +5,7 @@ const User = mongoose.model('User');
 const viewHelper = require('../views/view_handler');
 const user = require('../controllers/user');
 const dashboard = require('../controllers/dashboard');
+const fs = require('fs');
 
 router.all('/home', async function(req, res){
 	let token = await User.findOne({token: req.body.token});
@@ -12,7 +13,9 @@ router.all('/home', async function(req, res){
 		req.flash('error','You are already signed in!');
 		return res.redirect('/');
 	}
-	return viewHelper.renderViewWithParams({}, res, {view : 'new_home',  request : req})
+	const countries_json = fs.readFileSync('country.json');
+	const countries = JSON.parse(countries_json);
+	return viewHelper.renderViewWithParams({ countries: countries }, res, {view : 'new_home',  request : req})
 });
 
 router.get('/aboutus', async function(req, res) {

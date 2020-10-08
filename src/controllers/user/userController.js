@@ -17,7 +17,7 @@ exports.create = async (req, res) => {
 	let gender = req.body.gender;
 	let time = req.body.time;
 
-	if(time == 'Choose' || gender == 'Choose'){
+	if(time == 'Choose' || gender == 'Choose' || country == 'Choose'){
 		req.flash('error', 'Please fill up all the fields in the sign up form before submitting');
 		return res.redirect('/home');
 	}
