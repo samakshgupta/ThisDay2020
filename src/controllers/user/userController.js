@@ -93,11 +93,8 @@ exports.questionOfTheDay = async ( req, res ) => {
 		let today = moment(new Date());
 		let user_createdat = moment(user.createdAt);
 		let diff = today.diff(user_createdat, 'days');
-		question_no = Math.ceil(diff/2);
+		question_no = Math.floor(diff/2);
 
-		if(question_no == 0){
-			question_no = 1;
-		}
 		let question = await Question.findOne({day: question_no});
 		let already_answered = await Answer.findOne({ question: question.question, user: user.id });
 		if(already_answered){
@@ -196,7 +193,7 @@ exports.addQuestionsInDb = async (req, res) => {
 			'How would you like to remember this time?'
 		]
 	if(got_ques.length !== 60){
-		let day = 0;
+		let day = -1;
 		questions.forEach(async q => {
 			day = day+1;
 			let new_q = new Question({question: q, day});
