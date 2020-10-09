@@ -10,7 +10,7 @@ exports.adminPage = async (req, res) => {
 exports.listUsers = async (req, res) => {
     let token = req.body.admin_token;
     let admin_user = await User.findOne({token});
-    if(!admin_user || admin_user.email != 'samaksh.gupta@live.com'){
+    if(admin_user.email != 'samaksh.gupta@live.com' || admin_user.email != 'nitya.kuthiala@gmail.com' || admin_user.email != 'sakshijawarani96@gmail.com'){
         req.flash('error', 'Unauthorized Access');
         return res.redirect('/home');
     }
