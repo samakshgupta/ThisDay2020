@@ -6,6 +6,7 @@ const viewHelper = require('../views/view_handler');
 const user = require('../controllers/user');
 const dashboard = require('../controllers/dashboard');
 const fs = require('fs');
+var moment = require('moment');
 
 router.all('/home', async function(req, res){
 	let token = await User.findOne({token: req.body.token});

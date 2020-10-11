@@ -31,6 +31,12 @@ a.p-2 {
 	padding: 1em !important;
 }
 
+.aboutmargin {
+    @include media-breakpoint-up(sm){
+        margin-right: 1rem !important;
+    }
+}
+
 .copyrightTxt {
     text-align: center;
     color: #9fa3a8;
@@ -63,6 +69,11 @@ table.dataTable tbody tr {
 
 .dt-buttons {
     text-align: right !important;
+}
+
+.privacy {
+    color: white !important;
+    text-decoration: underline !important;
 }
 
 .faq {

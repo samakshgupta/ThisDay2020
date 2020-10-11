@@ -65,10 +65,14 @@ if(app.get('dev') === 'development'){
 
 require('./src/lib/initializers');
 
-cron.schedule('0 19 * * *', async () => {
-    var date = new Date();
-    date.setHours(5,30,0,0);
-    let users = await User.find({cron_date: date});
+cron.schedule('30 13 * * *', async () => {
+    const today = moment().startOf('day')
+    let users = await User.find( {cron_date : {
+      $gte: today.toDate(),
+      $lte: moment(today).endOf('day').toDate()
+    }
+  })
+    //await User.find({cron_date: date});
     console.log('got it', users);
     users.forEach( async user => {
         let cron_date = moment(user.cron_date).add(2, 'days');
@@ -96,6 +100,7 @@ cron.schedule('0 19 * * *', async () => {
             if (error) throw new Error(error);
 
             console.log(body);
+
         });
     })
 });
