@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
 	}
 
 	let cron_date = new Date();
-	cron_date.setDate(cron_date.getDate() + 2);
+	cron_date.setDate(cron_date.getDate() + 3);
 	cron_date.setHours(5,30,0,0);
 
 	let token = uuidv4();
