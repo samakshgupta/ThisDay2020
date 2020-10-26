@@ -5,5 +5,6 @@ const dashboardController = require('./dashboardController');
 router.post('/list/users', dashboardController.listUsers);
 router.get('/user/show/:id', dashboardController.detailUser);
 router.get('/admin', dashboardController.adminPage);
+router.get('/answersbydate', dashboardController.answersPage);
 
 module.exports = router;

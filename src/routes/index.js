@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Answer = mongoose.model('Answer');
 const viewHelper = require('../views/view_handler');
 const user = require('../controllers/user');
 const dashboard = require('../controllers/dashboard');
